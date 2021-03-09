@@ -1,0 +1,44 @@
+
+server:
+  port: 9990
+#Configure API-Gateway
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: USER-SERVICE
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user/**
+          fliters :
+            - name: CircuitBreaker
+              args:
+                name: USER-SERVICE
+                fallback: forward:/userServiceFallBack
+        - id: DEPARTMENT-SERVICE
+          uri: lb://DEPARTMENT-SERVICE
+          predicates:
+            - Path=/department/**
+          fliters:
+            - name: CircuitBreaker
+              args:
+                name: DEPARTMENT-SERVICE
+                fallback: forward:/departmentServiceFallBack
+
+
+# Hystrix configuration
+hystrix:
+  command:
+    fallbackcmd:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds : 4000
+
+management:
+  endpoint:
+   web:
+     exposure:
+       include: hystrix.stream

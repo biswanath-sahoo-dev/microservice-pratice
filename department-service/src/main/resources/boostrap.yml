@@ -1,0 +1,7 @@
+
+#Configure config-server
+spring:
+  cloud:
+    config:
+      enabled: true
+      url: http://localhost:9996

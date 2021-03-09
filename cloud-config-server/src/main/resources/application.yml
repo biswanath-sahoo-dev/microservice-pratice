@@ -1,0 +1,17 @@
+server:
+  port: 9996
+spring:
+  application:
+    name: CONFIG-SERVER
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/durgendra2801/config-server.git
+          clone-on-start: true
+          username: durgendra4ever@gmail.com
+          password: Durga#2896
+          skip-ssl-validation: true
+
+  profiles:
+    active: native

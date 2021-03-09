@@ -1,0 +1,17 @@
+
+POST http://localhost:9991/department/
+Content-Type: application/json
+
+{
+  "departmentCode": "KBCSS01",
+  "departmentName": "KBCSS-01",
+  "departmentLocation": "BLR"
+}
+
+###
+GET http://localhost:9990/department/1
+Accept: application/json
+
+###
+
+
